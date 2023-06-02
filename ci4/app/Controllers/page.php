@@ -9,8 +9,8 @@ class Page extends BaseController
         return view(
             'about',
             [
-                'title' => 'Halaman Abot',
-                'content' => 'Ini adalah halaman abaut yang menjelaskan tentang isi halaman ini.'
+                'title' => 'Halaman About',
+                'content' => 'Ini adalah halaman about yang menjelaskan tentang isi halaman ini.'
             ]
         );
     }

@@ -137,19 +137,18 @@ fungsi baru pada Controller Artikel dengan nama view().</p>
 
 ```php
 public function view($slug)
- {
- $model = new ArtikelModel();
- $artikel = $model->where([
- 'slug' => $slug
- ])->first();
- // Menampilkan error apabila data tidak ada.
- if (!$artikel)
- {
-    throw PageNotFoundException::forPageNotFound();
-}
-$title = $artikel['judul'];
-return view('artikel/detail', compact('artikel', 'title'));
-}
+    {
+        $model = new ArtikelModel();
+        $artikel = $model->where([
+            'slug' => $slug
+        ])->first();
+        // Menampilkan error apabila data tidak ada.
+        if (!$artikel) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+        $title = $artikel['judul'];
+        return view('artikel/detail', compact('artikel', 'title'));
+    }
 ```
 
 # Membuat View Detail
@@ -185,12 +184,12 @@ nama admin_index(), Kemudian masukan kode berikut.
 
 ```php
 public function admin_index()
-{
-$title = 'Daftar Artikel';
-$model = new ArtikelModel();
-$artikel = $model->findAll();
-return view('artikel/admin_index', compact('artikel', 'title'));
-}
+    {
+        $title = 'Daftar Artikel';
+        $model = new ArtikelModel();
+        $artikel = $model->findAll();
+        return view('artikel/admin_index', compact('artikel', 'title'));
+    }
 ```
 
 - Selanjutnya buat view untuk tampilan admin dengan nama admin_index.php
@@ -261,24 +260,23 @@ $routes->group('admin', function($routes) {
 
 ```php
 public function add()
-{
-// validasi data.
-$validation = \Config\Services::validation();
-$validation->setRules(['judul' => 'required']);
-$isDataValid = $validation->withRequest($this->request)->run();
-if ($isDataValid)
-{
-$artikel = new ArtikelModel();
-$artikel->insert([
-'judul' => $this->request->getPost('judul'),
-'isi' => $this->request->getPost('isi'),
-'slug' => url_title($this->request->getPost('judul')),
-]);
-return redirect('admin/artikel');
-}
-$title = "Tambah Artikel";
-return view('artikel/form_add', compact('title'));
-}
+    {
+        // validasi data.
+        $validation = \Config\Services::validation();
+        $validation->setRules(['judul' => 'required']);
+        $isDataValid = $validation->withRequest($this->request)->run();
+        if ($isDataValid) {
+            $artikel = new ArtikelModel();
+            $artikel->insert([
+                'judul' => $this->request->getPost('judul'),
+                'isi' => $this->request->getPost('isi'),
+                'slug' => url_title($this->request->getPost('judul')),
+            ]);
+            return redirect('admin/artikel');
+        }
+        $title = "Tambah Artikel";
+        return view('artikel/form_add', compact('title'));
+    }
 ```
 
 - Kemudian buat view untuk form tambah dengan nama form_add.php
@@ -311,25 +309,24 @@ return view('artikel/form_add', compact('title'));
 
 ```php
 public function edit($id)
- {
- $artikel = new ArtikelModel();
- // validasi data.
- $validation = \Config\Services::validation();
- $validation->setRules(['judul' => 'required']);
- $isDataValid = $validation->withRequest($this->request)->run();
- if ($isDataValid)
- {
- $artikel->update($id, [
- 'judul' => $this->request->getPost('judul'),
- 'isi' => $this->request->getPost('isi'),
- ]);
- return redirect('admin/artikel');
- }
- // ambil data lama
- $data = $artikel->where('id', $id)->first();
- $title = "Edit Artikel";
- return view('artikel/form_edit', compact('title', 'data'));
- }
+    {
+        $artikel = new ArtikelModel();
+        // validasi data.
+        $validation = \Config\Services::validation();
+        $validation->setRules(['judul' => 'required']);
+        $isDataValid = $validation->withRequest($this->request)->run();
+        if ($isDataValid) {
+            $artikel->update($id, [
+                'judul' => $this->request->getPost('judul'),
+                'isi' => $this->request->getPost('isi'),
+            ]);
+            return redirect('admin/artikel');
+        }
+        // ambil data lama
+        $data = $artikel->where('id', $id)->first();
+        $title = "Edit Artikel";
+        return view('artikel/form_edit', compact('title', 'data'));
+    }
 ```
 
 - Kemudian buat view untuk form tambah dengan nama form_edit.php
@@ -340,14 +337,13 @@ public function edit($id)
 <h2><?= $title; ?></h2>
 <form action="" method="post">
     <p>
-     <input type="text" name="judul" value="<?= $data['judul'];?>" >
+        <input type="text" name="judul" value="<?= $data['judul'];?>" >
     </p>
     <p>
-
         <textarea name="isi" cols="50" rows="10"><?=
 $data['isi'];?></textarea>
-     </p>
-     <p><input type="submit" value="Kirim" class="btn btn-large"></p>
+    </p>
+    <p><input type="submit" value="Kirim" class="btn btn-large"></p>
 </form>
 
 <?= $this->include('template/admin_footer'); ?>
@@ -360,11 +356,11 @@ $data['isi'];?></textarea>
 
 ```php
 public function delete($id)
-{
-  $artikel = new ArtikelModel();
-  $artikel->delete($id);
-  return redirect('admin/artikel');
-}
+    {
+        $artikel = new ArtikelModel();
+        $artikel->delete($id);
+        return redirect('admin/artikel');
+    }
 ```
 
 ## Pertanyaan dan Tugas
