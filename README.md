@@ -375,4 +375,9 @@ screenshotnya.
 5. Commit hasilnya pada repository masing-masing.
 6. Kirim URL repository pada e-learning ecampus.
 
-## Terima Kasih!
+**SELESAI**
+
+<div>
+<h2 align="center">Thanks For Reading!</h2>
+<div align="center">
+<img src="https://media.tenor.com/n9u7zcGqlUQAAAAi/cute-hamster.gif">
