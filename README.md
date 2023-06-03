@@ -349,7 +349,7 @@ $data['isi'];?></textarea>
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-![Edit Artikel](img/ubah_artikel.png)
+![Edit Artikel](img/edit_artikel.png)
 
 # Menghapus Data
 <p>Tambahkan fungsi/method baru pada Controller Artikel dengan nama delete().</p>
